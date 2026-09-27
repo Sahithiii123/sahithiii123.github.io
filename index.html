@@ -19,7 +19,15 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;transition:background .3s,color .3s;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;transition:background .3s,color .3s;overflow-x:hidden;position:relative;}
+.mesh{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;}
+.mesh span{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.35;animation:drift 22s ease-in-out infinite;}
+.mesh span:nth-child(1){width:420px;height:420px;background:var(--p1);top:-120px;left:-80px;}
+.mesh span:nth-child(2){width:380px;height:380px;background:var(--p2);top:30%;right:-120px;animation-delay:-7s;}
+.mesh span:nth-child(3){width:340px;height:340px;background:var(--p3);bottom:-100px;left:20%;animation-delay:-14s;}
+[data-theme="light"] .mesh span{opacity:0.18;}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(40px,-30px) scale(1.08);}}
+@media (prefers-reduced-motion: reduce){.mesh span{animation:none;}}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
 h1,h2,h3{font-family:'Poppins',sans-serif;}
 a{color:inherit;}
@@ -32,7 +40,14 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
 .navlinks a:hover{color:var(--text);}
 #themeBtn{background:var(--card);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:0.95rem;}
 header.hero{padding:110px 0 90px;text-align:center;position:relative;}
-.avatar{width:132px;height:132px;border-radius:50%;margin:0 auto 28px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;font-size:2.6rem;color:#fff;box-shadow:0 20px 50px -15px rgba(124,58,237,0.55);}
+.avatar{width:150px;height:150px;margin:0 auto 28px;position:relative;}
+.avatar .core{position:absolute;inset:24px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;font-size:2.2rem;color:#fff;box-shadow:0 20px 50px -15px rgba(124,58,237,0.55);}
+.avatar .orbit{position:absolute;inset:0;border-radius:50%;border:1px dashed var(--border);animation:spin 18s linear infinite;}
+.avatar .orbit2{position:absolute;inset:14px;border-radius:50%;border:1px dashed var(--border);animation:spin 12s linear infinite reverse;}
+.avatar .node{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--p2);top:-4px;left:calc(50% - 4.5px);box-shadow:0 0 10px var(--p2);}
+.avatar .node2{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--p3);bottom:-3px;left:calc(50% - 3.5px);box-shadow:0 0 8px var(--p3);}
+@keyframes spin{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion: reduce){.avatar .orbit,.avatar .orbit2{animation:none;}}
 .hero h1{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:800;margin-bottom:10px;}
 .hero .role{font-size:1.15rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;margin-bottom:18px;}
 .hero p.tag{max-width:560px;margin:0 auto 34px;color:var(--muted);font-size:1.02rem;}
@@ -82,11 +97,20 @@ section h2{font-size:1.9rem;font-weight:700;margin-bottom:36px;}
 .contact-box p{opacity:0.92;max-width:480px;margin:0 auto 28px;}
 .contact-box .social a{border-color:rgba(255,255,255,0.4);color:#fff;}
 .contact-box .social a:hover{background:#fff;color:var(--p1);}
+.stats{padding:50px 0 10px;}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;}
+.statcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px 20px;text-align:center;}
+.statcard .num{font-family:'Poppins',sans-serif;font-weight:800;font-size:2.1rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.statcard .lbl{font-size:0.82rem;color:var(--muted);margin-top:6px;}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease;}
+.reveal.show{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;}}
 footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
 @media(max-width:640px){.navlinks{display:none;}}
 </style>
 </head>
 <body>
+<div class="mesh"><span></span><span></span><span></span></div>
 <nav><div class="wrap">
   <div class="logo">Sahithi V S</div>
   <div class="navlinks">
@@ -97,7 +121,11 @@ footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
 
 <header class="hero">
   <div class="wrap">
-    <div class="avatar">SV</div>
+    <div class="avatar">
+      <div class="orbit"><span class="node"></span></div>
+      <div class="orbit2"><span class="node2"></span></div>
+      <div class="core">SV</div>
+    </div>
     <h1>Sahithi V S</h1>
     <div class="role">Data & AI Engineer</div>
     <p class="tag">I turn messy, noisy real-world data — cloud bills, logs, acoustic signals, product reviews — into reliable signal, AI-driven automation, and decision-ready insight.</p>
@@ -113,6 +141,15 @@ footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
   </div>
 </header>
 
+<section class="stats"><div class="wrap">
+  <div class="statgrid">
+    <div class="statcard reveal"><div class="num" data-count="1.13" data-decimals="2" data-prefix="$" data-suffix="M+">0</div><div class="lbl">Client Savings & Optimization Surfaced</div></div>
+    <div class="statcard reveal"><div class="num" data-count="10000" data-suffix="+">0</div><div class="lbl">Reviews Analyzed in One Pipeline</div></div>
+    <div class="statcard reveal"><div class="num" data-count="20" data-suffix="+">0</div><div class="lbl">AI Agents Orchestrated (Kyndryl)</div></div>
+    <div class="statcard reveal"><div class="num" data-count="1">0</div><div class="lbl">Published IEEE Paper (ICCSC 2025)</div></div>
+  </div>
+</div></section>
+
 <section id="about"><div class="wrap">
   <div class="eyebrow">ABOUT ME</div>
   <h2>Who I am</h2>
@@ -123,13 +160,13 @@ footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
   <div class="eyebrow">CAPABILITIES</div>
   <h2>Skills & Certifications</h2>
   <div class="skillgrid">
-    <div class="skillcard"><h3><i class="fa-solid fa-code"></i> Languages</h3><div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">C++</span></div></div>
-    <div class="skillcard"><h3><i class="fa-solid fa-brain"></i> AI / ML</h3><div class="chips"><span class="chip">Machine Learning</span><span class="chip">Deep Learning</span><span class="chip">CNN / CNN-LSTM</span><span class="chip">NLP</span><span class="chip">Agentic AI</span><span class="chip">LLMs</span><span class="chip">AWS Bedrock</span><span class="chip">Prompt Engineering</span><span class="chip">TensorFlow</span></div></div>
-    <div class="skillcard"><h3><i class="fa-solid fa-cloud"></i> Cloud & Infra</h3><div class="chips"><span class="chip">AWS (S3, Lambda, EC2, RDS, Athena, Glue, CDK)</span><span class="chip">DynamoDB</span><span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">Oracle Cloud</span><span class="chip">FinOps</span><span class="chip">AIOps</span></div></div>
-    <div class="skillcard"><h3><i class="fa-solid fa-chart-line"></i> Data Science & Stats</h3><div class="chips"><span class="chip">Statistical Modeling</span><span class="chip">Regression</span><span class="chip">Hypothesis Testing</span><span class="chip">A/B Testing</span><span class="chip">Causal Inference</span><span class="chip">Feature Engineering</span><span class="chip">EDA</span></div></div>
-    <div class="skillcard"><h3><i class="fa-solid fa-display"></i> Dashboards & BI</h3><div class="chips"><span class="chip">Looker</span><span class="chip">Grafana</span><span class="chip">Amazon QuickSight</span><span class="chip">Power BI</span></div></div>
-    <div class="skillcard"><h3><i class="fa-solid fa-magnifying-glass-chart"></i> Observability</h3><div class="chips"><span class="chip">OpenTelemetry</span><span class="chip">Prometheus</span><span class="chip">Root-Cause Analysis</span></div></div>
-    <div class="skillcard"><h3><i class="fa-solid fa-certificate"></i> Certifications</h3><div class="chips"><span class="chip">AWS Solutions Architect</span><span class="chip">AWS Cloud Practitioner</span><span class="chip">Google Cloud Digital Leader</span><span class="chip">Azure AZ-900</span><span class="chip">Azure AI-900</span><span class="chip">Power BI PL-300</span></div></div>
+    <div class="skillcard reveal"><h3><i class="fa-solid fa-code"></i> Languages</h3><div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">C++</span></div></div>
+    <div class="skillcard reveal"><h3><i class="fa-solid fa-brain"></i> AI / ML</h3><div class="chips"><span class="chip">Machine Learning</span><span class="chip">Deep Learning</span><span class="chip">CNN / CNN-LSTM</span><span class="chip">NLP</span><span class="chip">Agentic AI</span><span class="chip">LLMs</span><span class="chip">AWS Bedrock</span><span class="chip">Prompt Engineering</span><span class="chip">TensorFlow</span></div></div>
+    <div class="skillcard reveal"><h3><i class="fa-solid fa-cloud"></i> Cloud & Infra</h3><div class="chips"><span class="chip">AWS (S3, Lambda, EC2, RDS, Athena, Glue, CDK)</span><span class="chip">DynamoDB</span><span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">Oracle Cloud</span><span class="chip">FinOps</span><span class="chip">AIOps</span></div></div>
+    <div class="skillcard reveal"><h3><i class="fa-solid fa-chart-line"></i> Data Science & Stats</h3><div class="chips"><span class="chip">Statistical Modeling</span><span class="chip">Regression</span><span class="chip">Hypothesis Testing</span><span class="chip">A/B Testing</span><span class="chip">Causal Inference</span><span class="chip">Feature Engineering</span><span class="chip">EDA</span></div></div>
+    <div class="skillcard reveal"><h3><i class="fa-solid fa-display"></i> Dashboards & BI</h3><div class="chips"><span class="chip">Looker</span><span class="chip">Grafana</span><span class="chip">Amazon QuickSight</span><span class="chip">Power BI</span></div></div>
+    <div class="skillcard reveal"><h3><i class="fa-solid fa-magnifying-glass-chart"></i> Observability</h3><div class="chips"><span class="chip">OpenTelemetry</span><span class="chip">Prometheus</span><span class="chip">Root-Cause Analysis</span></div></div>
+    <div class="skillcard reveal"><h3><i class="fa-solid fa-certificate"></i> Certifications</h3><div class="chips"><span class="chip">AWS Solutions Architect</span><span class="chip">AWS Cloud Practitioner</span><span class="chip">Google Cloud Digital Leader</span><span class="chip">Azure AZ-900</span><span class="chip">Azure AI-900</span><span class="chip">Power BI PL-300</span></div></div>
   </div>
 
   <div class="tierlabel">Also worked with (courses / limited hands-on — not daily-driver depth)</div>
@@ -147,49 +184,49 @@ footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
   <h2>Featured Projects</h2>
   <div class="pgrid">
 
-    <div class="pcard"><h3>LogSleuth</h3><div class="result">Eval harness: 4/15 scenarios passed</div>
+    <div class="pcard reveal"><h3><i class="fa-solid fa-magnifying-glass"></i> LogSleuth</h3><div class="result">Eval harness: 4/15 scenarios passed</div>
       <p>A ReAct-style LLM agent that diagnoses failing service integrations from logs — 5 tools, structured Pydantic output, cost caps, and prompt-injection guardrails, with full OpenTelemetry/Prometheus/Grafana observability.</p>
       <div class="tags"><span>Python</span><span>ReAct Agent</span><span>Grafana</span><span>OpenTelemetry</span></div>
       <a class="gh" href="https://github.com/Sahithiii123/logsleuth" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
     </div>
 
-    <div class="pcard"><h3>Cadence — AI Shoe Intelligence</h3><div class="result">10,000+ reviews analyzed in under 5 minutes</div>
+    <div class="pcard reveal"><h3><i class="fa-solid fa-shoe-prints"></i> Cadence — AI Shoe Intelligence</h3><div class="result">10,000+ reviews analyzed in under 5 minutes</div>
       <p>A 32-agent pipeline on AWS Lambda + Bedrock (Claude Sonnet 4.5) reading product reviews once to power shopper fit-matching and retailer restock/avoid decisions via a deterministic, auditable scoring layer.</p>
       <div class="tags"><span>AWS Lambda</span><span>Bedrock</span><span>Multi-Agent</span></div>
       <a class="gh" href="https://github.com/Sahithiii123/cadence-ai-shoe-intelligence" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
     </div>
 
-    <div class="pcard"><h3>DS Deliverable Evaluator</h3><div class="result">100% reproducible across runs</div>
+    <div class="pcard reveal"><h3><i class="fa-solid fa-scale-balanced"></i> DS Deliverable Evaluator</h3><div class="result">100% reproducible across runs</div>
       <p>A rubric-based grader for A/B tests, causal inference, ML/NLP evaluations, and EDA reports — 26+ evidence-based criteria, correctly scoring a deliberately weak deliverable 4.7/100 vs. 100/100 for a sound one.</p>
       <div class="tags"><span>Python</span><span>Rubric Design</span><span>LLM-as-Judge</span></div>
       <a class="gh" href="https://github.com/Sahithiii123/ds-deliverable-evaluator" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
     </div>
 
-    <div class="pcard"><h3>Cloud Cost Anomaly Finder</h3><div class="result">1 real anomaly isolated from 32 false positives</div>
+    <div class="pcard reveal"><h3><i class="fa-solid fa-cloud-arrow-up"></i> Cloud Cost Anomaly Finder</h3><div class="result">1 real anomaly isolated from 32 false positives</div>
       <p>A Python/SQL pipeline simulating 14 months of AWS cost data — Athena-style SQL, a 7-day rolling z-score anomaly detector, and dual-method forecasting landing within 1.5% agreement.</p>
       <div class="tags"><span>SQL</span><span>Athena</span><span>Forecasting</span></div>
       <a class="gh" href="https://github.com/Sahithiii123/cloud-cost-anomaly-finops" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
     </div>
 
-    <div class="pcard"><h3>DoA Estimation for Gunshot Detection</h3><div class="result">Published — IEEE ICCSC 2025</div>
+    <div class="pcard reveal"><h3><i class="fa-solid fa-wave-square"></i> DoA Estimation for Gunshot Detection</h3><div class="result">Published — IEEE ICCSC 2025</div>
       <p>CNN/CNN-LSTM vs. classical GCC-PHAT/TDOA for acoustic gunshot localization. A feature-pipeline bug was found and fixed, and a harder re-run with 3.3x more data put the CNN 15 points ahead of classical baselines.</p>
       <div class="tags"><span>CNN/LSTM</span><span>Signal Processing</span><span>Research</span></div>
       <a class="gh" href="https://github.com/Sahithiii123/doa-gunshot-detection-main" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
     </div>
 
-    <div class="pcard"><h3>A/B Test: Experiment Design</h3><div class="result">28.2% power → "need more data"</div>
+    <div class="pcard reveal"><h3><i class="fa-solid fa-flask"></i> A/B Test: Experiment Design</h3><div class="result">28.2% power → "need more data"</div>
       <p>A full experiment lifecycle on a marketing dataset — pre-registered hypothesis, power analysis, chi-square test, and confidence interval, honestly reporting a promising but statistically inconclusive lift.</p>
       <div class="tags"><span>Hypothesis Testing</span><span>Power Analysis</span></div>
       <a class="gh" href="https://github.com/Sahithiii123/ab-test-experiment-design" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
     </div>
 
-    <div class="pcard"><h3>NLP Model Evaluation</h3><div class="result">Caught its own data-leakage bug</div>
+    <div class="pcard reveal"><h3><i class="fa-solid fa-language"></i> NLP Model Evaluation</h3><div class="result">Caught its own data-leakage bug</div>
       <p>Compares word-level vs. character-level TF-IDF for multilingual intent classification. Found and fixed a train/test leakage bug inflating accuracy to 99-100%, then honestly reported that cross-lingual generalization to an unseen language (Hindi) was near-chance, not the raw 28-32% it first appeared to be.</p>
       <div class="tags"><span>Python</span><span>NLP</span><span>Model Evaluation</span></div>
       <a class="gh" href="https://github.com/Sahithiii123/nlp-model-evaluation" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
     </div>
 
-    <div class="pcard"><h3>Order Processing System</h3><div class="result">Event-driven, AWS CDK</div>
+    <div class="pcard reveal"><h3><i class="fa-solid fa-boxes-stacked"></i> Order Processing System</h3><div class="result">Event-driven, AWS CDK</div>
       <p>A multi-service, event-driven serverless pipeline (API Gateway → Lambda → DynamoDB Streams → EventBridge → SQS/DLQ → Step Functions) with idempotency, retry/backoff, and LocalStack-based local testing.</p>
       <div class="tags"><span>AWS CDK</span><span>Event-Driven</span><span>TypeScript</span></div>
       <a class="gh" href="https://github.com/Sahithiii123/order-processing-system" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
@@ -245,6 +282,54 @@ footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
 <footer>© 2026 Sahithi V S. Built with real project data, not lorem ipsum.</footer>
 
 <script>
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.pcard').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = 'perspective(600px) rotateY(' + (x*6) + 'deg) rotateX(' + (-y*6) + 'deg) translateY(-4px)';
+    });
+    card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
+  });
+})();
+(function(){
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!('IntersectionObserver' in window) || reduced){
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('show'));
+    document.querySelectorAll('.num[data-count]').forEach(el=>{
+      const d = parseInt(el.getAttribute('data-decimals')||'0',10);
+      el.textContent = (el.getAttribute('data-prefix')||'') + parseFloat(el.getAttribute('data-count')).toFixed(d) + (el.getAttribute('data-suffix')||'');
+    });
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        const num = entry.target.querySelector('.num[data-count]') || (entry.target.matches('.num[data-count]') ? entry.target : null);
+        if(num && !num.dataset.done){
+          num.dataset.done = '1';
+          const target = parseFloat(num.getAttribute('data-count'));
+          const decimals = parseInt(num.getAttribute('data-decimals')||'0',10);
+          const prefix = num.getAttribute('data-prefix')||'';
+          const suffix = num.getAttribute('data-suffix')||'';
+          const dur = 1200; const start = performance.now();
+          function step(now){
+            const p = Math.min((now-start)/dur, 1);
+            const val = target * (1 - Math.pow(1-p, 3));
+            num.textContent = prefix + val.toFixed(decimals) + suffix;
+            if(p<1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.25});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
 function applyTheme(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('themeIcon').className = t==='light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';try{localStorage.setItem('theme',t);}catch(e){}}
 function toggleTheme(){const cur=document.documentElement.getAttribute('data-theme')||'dark';applyTheme(cur==='dark'?'light':'dark');}
 (function(){let saved;try{saved=localStorage.getItem('theme');}catch(e){}
