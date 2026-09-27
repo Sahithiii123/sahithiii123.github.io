@@ -23,7 +23,6 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;trans
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
 h1,h2,h3{font-family:'Poppins',sans-serif;}
 a{color:inherit;}
-/* NAV */
 nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(15,14,23,0.65);border-bottom:1px solid var(--border);}
 [data-theme="light"] nav{background:rgba(250,250,252,0.75);}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;}
@@ -32,7 +31,6 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:
 .navlinks a{text-decoration:none;color:var(--muted);}
 .navlinks a:hover{color:var(--text);}
 #themeBtn{background:var(--card);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:0.95rem;}
-/* HERO */
 header.hero{padding:110px 0 90px;text-align:center;position:relative;}
 .avatar{width:132px;height:132px;border-radius:50%;margin:0 auto 28px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;font-size:2.6rem;color:#fff;box-shadow:0 20px 50px -15px rgba(124,58,237,0.55);}
 .hero h1{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:800;margin-bottom:10px;}
@@ -46,20 +44,18 @@ header.hero{padding:110px 0 90px;text-align:center;position:relative;}
 .social{display:flex;gap:16px;justify-content:center;margin-top:30px;}
 .social a{width:42px;height:42px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.05rem;color:var(--muted);text-decoration:none;transition:.2s;}
 .social a:hover{color:#fff;background:var(--grad);border-color:transparent;}
-/* SECTION */
 section{padding:80px 0;}
 .eyebrow{color:var(--p2);font-weight:600;font-size:0.85rem;letter-spacing:0.02em;margin-bottom:8px;}
 section h2{font-size:1.9rem;font-weight:700;margin-bottom:36px;}
-/* ABOUT */
 .about-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;font-size:1.02rem;color:var(--muted);line-height:1.75;max-width:760px;}
-/* SKILLS */
 .skillgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;}
 .skillcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;}
 .skillcard h3{font-size:1rem;margin-bottom:14px;display:flex;align-items:center;gap:9px;}
 .skillcard h3 i{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
 .chips{display:flex;flex-wrap:wrap;gap:8px;}
 .chip{font-size:0.8rem;padding:5px 12px;border-radius:20px;background:var(--bg2);border:1px solid var(--border);color:var(--text);}
-/* PROJECTS */
+.tierlabel{font-size:0.82rem;color:var(--muted);margin:34px 0 16px;font-weight:600;text-transform:none;}
+.chip.light{opacity:0.82;font-size:0.77rem;}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
 .pcard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease;position:relative;overflow:hidden;}
 .pcard::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);opacity:0;transition:.25s;}
@@ -72,16 +68,15 @@ section h2{font-size:1.9rem;font-weight:700;margin-bottom:36px;}
 .pcard .tags span{font-size:0.72rem;padding:3px 9px;border-radius:12px;background:var(--bg2);color:var(--muted);}
 .pcard .gh{align-self:flex-start;padding:9px 18px;border-radius:22px;background:var(--bg2);border:1px solid var(--border);font-size:0.84rem;font-weight:600;text-decoration:none;color:var(--text);display:inline-flex;align-items:center;gap:7px;}
 .pcard .gh:hover{background:var(--grad);color:#fff;border-color:transparent;}
-/* TIMELINE */
 .timeline{border-left:2px solid var(--border);padding-left:28px;display:flex;flex-direction:column;gap:34px;}
 .titem{position:relative;}
 .titem::before{content:"";position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--grad);}
 .titem .when{font-size:0.8rem;color:var(--p2);font-weight:600;margin-bottom:4px;}
 .titem h3{font-size:1.05rem;margin-bottom:2px;}
 .titem .org{color:var(--muted);font-size:0.9rem;margin-bottom:10px;font-style:italic;}
+.titem .sub{font-size:0.86rem;font-weight:600;color:var(--text);margin:14px 0 6px;}
 .titem ul{margin-left:1.1em;color:var(--muted);font-size:0.9rem;}
 .titem li{margin-bottom:5px;}
-/* CONTACT */
 .contact-box{background:var(--grad);border-radius:24px;padding:56px 36px;text-align:center;color:#fff;}
 .contact-box h2{color:#fff;}
 .contact-box p{opacity:0.92;max-width:480px;margin:0 auto 28px;}
@@ -121,7 +116,7 @@ footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
 <section id="about"><div class="wrap">
   <div class="eyebrow">ABOUT ME</div>
   <h2>Who I am</h2>
-  <div class="about-box">Data professional with hands-on, production experience in Python, SQL, and cloud-based analytics, skilled at turning messy data into clear dashboards and actionable insights. Currently a Data and Infrastructure Specialist at Kyndryl (Fortune 500, spun off from IBM), where I build AI-driven anomaly detection and rightsizing models across a $650K+/month multi-cloud environment. B.Tech in AI & Data Science from REVA University, and co-author of a published IEEE paper on deep learning for acoustic direction-of-arrival estimation. Comfortable working independently across remote, cross-functional teams, with a strong foundation in statistics, machine learning, and data quality.</div>
+  <div class="about-box">Data professional with hands-on, production experience in Python, SQL, and cloud-based analytics, skilled at turning messy data into clear dashboards and actionable insights. Currently a Data and Infrastructure Specialist at Kyndryl (Fortune 500, spun off from IBM), where I run FinOps for two enterprise multi-cloud accounts and designed a 20+ agent AI system for commercial use. B.Tech in AI & Data Science from REVA University, and co-author of a published IEEE paper on deep learning for acoustic direction-of-arrival estimation. Comfortable working independently across remote, cross-functional teams, with a strong foundation in statistics, machine learning, and data quality.</div>
 </div></section>
 
 <section id="skills"><div class="wrap">
@@ -129,11 +124,21 @@ footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
   <h2>Skills & Certifications</h2>
   <div class="skillgrid">
     <div class="skillcard"><h3><i class="fa-solid fa-code"></i> Languages</h3><div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">C++</span></div></div>
-    <div class="skillcard"><h3><i class="fa-solid fa-brain"></i> AI / ML</h3><div class="chips"><span class="chip">Machine Learning</span><span class="chip">Deep Learning</span><span class="chip">CNN / CNN-LSTM</span><span class="chip">NLP</span><span class="chip">Agentic AI</span><span class="chip">LLMs</span><span class="chip">AWS Bedrock</span><span class="chip">TensorFlow</span></div></div>
-    <div class="skillcard"><h3><i class="fa-solid fa-cloud"></i> Cloud & Infra</h3><div class="chips"><span class="chip">AWS (S3, Lambda, EC2, RDS, Athena, Glue)</span><span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">FinOps</span><span class="chip">AIOps</span></div></div>
-    <div class="skillcard"><h3><i class="fa-solid fa-chart-line"></i> Data Science & Stats</h3><div class="chips"><span class="chip">Statistical Modeling</span><span class="chip">Hypothesis Testing</span><span class="chip">A/B Testing</span><span class="chip">Causal Inference</span><span class="chip">EDA</span></div></div>
+    <div class="skillcard"><h3><i class="fa-solid fa-brain"></i> AI / ML</h3><div class="chips"><span class="chip">Machine Learning</span><span class="chip">Deep Learning</span><span class="chip">CNN / CNN-LSTM</span><span class="chip">NLP</span><span class="chip">Agentic AI</span><span class="chip">LLMs</span><span class="chip">AWS Bedrock</span><span class="chip">Prompt Engineering</span><span class="chip">TensorFlow</span></div></div>
+    <div class="skillcard"><h3><i class="fa-solid fa-cloud"></i> Cloud & Infra</h3><div class="chips"><span class="chip">AWS (S3, Lambda, EC2, RDS, Athena, Glue, CDK)</span><span class="chip">DynamoDB</span><span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">Oracle Cloud</span><span class="chip">FinOps</span><span class="chip">AIOps</span></div></div>
+    <div class="skillcard"><h3><i class="fa-solid fa-chart-line"></i> Data Science & Stats</h3><div class="chips"><span class="chip">Statistical Modeling</span><span class="chip">Regression</span><span class="chip">Hypothesis Testing</span><span class="chip">A/B Testing</span><span class="chip">Causal Inference</span><span class="chip">Feature Engineering</span><span class="chip">EDA</span></div></div>
     <div class="skillcard"><h3><i class="fa-solid fa-display"></i> Dashboards & BI</h3><div class="chips"><span class="chip">Looker</span><span class="chip">Grafana</span><span class="chip">Amazon QuickSight</span><span class="chip">Power BI</span></div></div>
+    <div class="skillcard"><h3><i class="fa-solid fa-magnifying-glass-chart"></i> Observability</h3><div class="chips"><span class="chip">OpenTelemetry</span><span class="chip">Prometheus</span><span class="chip">Root-Cause Analysis</span></div></div>
     <div class="skillcard"><h3><i class="fa-solid fa-certificate"></i> Certifications</h3><div class="chips"><span class="chip">AWS Solutions Architect</span><span class="chip">AWS Cloud Practitioner</span><span class="chip">Google Cloud Digital Leader</span><span class="chip">Azure AZ-900</span><span class="chip">Azure AI-900</span><span class="chip">Power BI PL-300</span></div></div>
+  </div>
+
+  <div class="tierlabel">Also worked with (courses / limited hands-on — not daily-driver depth)</div>
+  <div class="chips">
+    <span class="chip light">PostgreSQL</span><span class="chip light">Hadoop</span><span class="chip light">Spark</span><span class="chip light">Airflow</span>
+    <span class="chip light">PyTorch</span><span class="chip light">scikit-learn</span><span class="chip light">Transformers</span><span class="chip light">Tableau</span>
+    <span class="chip light">Docker</span><span class="chip light">Jest</span><span class="chip light">Jira</span><span class="chip light">Notion</span>
+    <span class="chip light">GitHub Copilot</span><span class="chip light">Claude Code</span><span class="chip light">AWS Kiro</span><span class="chip light">OpenAI Codex</span>
+    <span class="chip light">n8n</span><span class="chip light">UiPath</span>
   </div>
 </div></section>
 
@@ -148,7 +153,7 @@ footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
       <a class="gh" href="https://github.com/Sahithiii123/logsleuth" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
     </div>
 
-    <div class="pcard"><h3>Cadence — AI Shoe Intelligence</h3><div class="result">6,000 reviews analyzed in one pass</div>
+    <div class="pcard"><h3>Cadence — AI Shoe Intelligence</h3><div class="result">10,000+ reviews analyzed in under 5 minutes</div>
       <p>A 32-agent pipeline on AWS Lambda + Bedrock (Claude Sonnet 4.5) reading product reviews once to power shopper fit-matching and retailer restock/avoid decisions via a deterministic, auditable scoring layer.</p>
       <div class="tags"><span>AWS Lambda</span><span>Bedrock</span><span>Multi-Agent</span></div>
       <a class="gh" href="https://github.com/Sahithiii123/cadence-ai-shoe-intelligence" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
@@ -178,6 +183,12 @@ footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
       <a class="gh" href="https://github.com/Sahithiii123/ab-test-experiment-design" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
     </div>
 
+    <div class="pcard"><h3>NLP Model Evaluation</h3><div class="result">Caught its own data-leakage bug</div>
+      <p>Compares word-level vs. character-level TF-IDF for multilingual intent classification. Found and fixed a train/test leakage bug inflating accuracy to 99-100%, then honestly reported that cross-lingual generalization to an unseen language (Hindi) was near-chance, not the raw 28-32% it first appeared to be.</p>
+      <div class="tags"><span>Python</span><span>NLP</span><span>Model Evaluation</span></div>
+      <a class="gh" href="https://github.com/Sahithiii123/nlp-model-evaluation" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
+    </div>
+
     <div class="pcard"><h3>Order Processing System</h3><div class="result">Event-driven, AWS CDK</div>
       <p>A multi-service, event-driven serverless pipeline (API Gateway → Lambda → DynamoDB Streams → EventBridge → SQS/DLQ → Step Functions) with idempotency, retry/backoff, and LocalStack-based local testing.</p>
       <div class="tags"><span>AWS CDK</span><span>Event-Driven</span><span>TypeScript</span></div>
@@ -192,11 +203,26 @@ footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
   <h2>Experience & Education</h2>
   <div class="timeline">
     <div class="titem"><div class="when">JUL 2025 – PRESENT</div><h3>Data and Infrastructure Specialist</h3><div class="org">Kyndryl, India — Fortune 500, spun off from IBM</div>
-      <ul><li>Applied Python/SQL statistical modeling to evaluate cost/performance data across a $650K+/month multi-cloud environment.</li>
-      <li>Built AI-driven anomaly detection and rightsizing models on AWS Bedrock, surfacing $671K in optimization findings and $460K in reservation savings.</li></ul>
+      <div class="sub">Avolta ($650K+/month, AWS/Azure)</div>
+      <ul>
+        <li>Lead backend AWS pipeline maintenance and day-to-day FinOps operations; primary technical liaison for FinOps tooling, managing dashboard requirements, client tickets, and change requests.</li>
+        <li>Drive weekly optimization recommendations — $671K identified in right-sizing/scheduling, $460K in reservation savings — and maintain 95%+ tag compliance across 1,200+ resources.</li>
+        <li>Author and present monthly FinOps status reports to client and account leadership.</li>
+      </ul>
+      <div class="sub">Madden — Saudi Arabia (Oracle Cloud + AWS)</div>
+      <ul>
+        <li>Build and maintain a multi-tab QuickSight cost dashboard (Cost, Assets, VMs, Tagging, Recommendations, Savings Tracker) tracking $11M+ in billed spend.</li>
+        <li>Handle tickets and change requests for data and dashboard accuracy.</li>
+      </ul>
+      <div class="sub">Cross-team contributions</div>
+      <ul>
+        <li>Designed a multi-agent AI system (orchestrator architecture, 20+ specialized agents) on AWS Bedrock and S3 for a commercial use case — sentiment analysis, fraud/anomaly detection, demand forecasting, and personalized recommendations.</li>
+        <li>Built Grafana dashboards for a Hybrid Cloud Service Observability (HCSO) initiative; cross-trained in GCP and Looker; support FinOps-for-AI automation and peer dashboard QA review.</li>
+      </ul>
     </div>
     <div class="titem"><div class="when">AUG 2024 – FEB 2025</div><h3>AI/ML Intern</h3><div class="org">Nullclass Private Limited, Chennai</div>
-      <ul><li>Built and benchmarked ML/deep learning pipelines, including LLM and NLP models, across 10+ languages.</li></ul>
+      <ul><li>Built and benchmarked ML/deep learning pipelines, including LLM and NLP models, across 10+ languages, selecting best-performing configurations through statistical experimentation.</li>
+      <li>Engineered features for intent detection and dialogue management; documented findings in technical reports.</li></ul>
     </div>
     <div class="titem"><div class="when">NOV 2021 – JUN 2025</div><h3>B.Tech, AI & Data Science</h3><div class="org">REVA University — CGPA 8.05</div>
       <ul><li>Co-author, "Direction of Arrival Estimation for Gunshot Detection," IEEE ICCSC 2025.</li></ul>
