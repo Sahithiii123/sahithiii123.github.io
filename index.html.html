@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sahithi V S — Data & AI Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --bg:#0f0e17; --bg2:#161426; --card:#1c1a30; --text:#f2f2f7; --muted:#a8a5bd;
+  --p1:#7C3AED; --p2:#EC4899; --p3:#06B6D4; --p4:#F59E0B;
+  --grad: linear-gradient(120deg,var(--p1),var(--p2) 55%,var(--p3));
+  --border: rgba(255,255,255,0.09);
+}
+[data-theme="light"]{
+  --bg:#FAFAFC; --bg2:#F2F1F8; --card:#FFFFFF; --text:#191825; --muted:#5F5C74; --border: rgba(0,0,0,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;transition:background .3s,color .3s;overflow-x:hidden;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+h1,h2,h3{font-family:'Poppins',sans-serif;}
+a{color:inherit;}
+/* NAV */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(15,14,23,0.65);border-bottom:1px solid var(--border);}
+[data-theme="light"] nav{background:rgba(250,250,252,0.75);}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;}
+.logo{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.navlinks{display:flex;gap:26px;align-items:center;font-size:0.92rem;font-weight:500;}
+.navlinks a{text-decoration:none;color:var(--muted);}
+.navlinks a:hover{color:var(--text);}
+#themeBtn{background:var(--card);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:0.95rem;}
+/* HERO */
+header.hero{padding:110px 0 90px;text-align:center;position:relative;}
+.avatar{width:132px;height:132px;border-radius:50%;margin:0 auto 28px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:800;font-size:2.6rem;color:#fff;box-shadow:0 20px 50px -15px rgba(124,58,237,0.55);}
+.hero h1{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:800;margin-bottom:10px;}
+.hero .role{font-size:1.15rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;margin-bottom:18px;}
+.hero p.tag{max-width:560px;margin:0 auto 34px;color:var(--muted);font-size:1.02rem;}
+.btnrow{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn{padding:13px 26px;border-radius:30px;font-weight:600;font-size:0.94rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .18s ease,box-shadow .18s ease;cursor:pointer;border:none;}
+.btn-grad{background:var(--grad);color:#fff;box-shadow:0 10px 30px -10px rgba(124,58,237,0.6);}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+.btn:hover{transform:translateY(-3px);}
+.social{display:flex;gap:16px;justify-content:center;margin-top:30px;}
+.social a{width:42px;height:42px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.05rem;color:var(--muted);text-decoration:none;transition:.2s;}
+.social a:hover{color:#fff;background:var(--grad);border-color:transparent;}
+/* SECTION */
+section{padding:80px 0;}
+.eyebrow{color:var(--p2);font-weight:600;font-size:0.85rem;letter-spacing:0.02em;margin-bottom:8px;}
+section h2{font-size:1.9rem;font-weight:700;margin-bottom:36px;}
+/* ABOUT */
+.about-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;font-size:1.02rem;color:var(--muted);line-height:1.75;max-width:760px;}
+/* SKILLS */
+.skillgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;}
+.skillcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;}
+.skillcard h3{font-size:1rem;margin-bottom:14px;display:flex;align-items:center;gap:9px;}
+.skillcard h3 i{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{font-size:0.8rem;padding:5px 12px;border-radius:20px;background:var(--bg2);border:1px solid var(--border);color:var(--text);}
+/* PROJECTS */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease;position:relative;overflow:hidden;}
+.pcard::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);opacity:0;transition:.25s;}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 25px 50px -20px rgba(124,58,237,0.35);}
+.pcard:hover::before{opacity:1;}
+.pcard h3{font-size:1.08rem;margin-bottom:8px;}
+.pcard .result{font-size:0.82rem;font-weight:600;color:var(--p3);margin-bottom:10px;}
+.pcard p{font-size:0.9rem;color:var(--muted);flex-grow:1;margin-bottom:14px;}
+.pcard .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.pcard .tags span{font-size:0.72rem;padding:3px 9px;border-radius:12px;background:var(--bg2);color:var(--muted);}
+.pcard .gh{align-self:flex-start;padding:9px 18px;border-radius:22px;background:var(--bg2);border:1px solid var(--border);font-size:0.84rem;font-weight:600;text-decoration:none;color:var(--text);display:inline-flex;align-items:center;gap:7px;}
+.pcard .gh:hover{background:var(--grad);color:#fff;border-color:transparent;}
+/* TIMELINE */
+.timeline{border-left:2px solid var(--border);padding-left:28px;display:flex;flex-direction:column;gap:34px;}
+.titem{position:relative;}
+.titem::before{content:"";position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--grad);}
+.titem .when{font-size:0.8rem;color:var(--p2);font-weight:600;margin-bottom:4px;}
+.titem h3{font-size:1.05rem;margin-bottom:2px;}
+.titem .org{color:var(--muted);font-size:0.9rem;margin-bottom:10px;font-style:italic;}
+.titem ul{margin-left:1.1em;color:var(--muted);font-size:0.9rem;}
+.titem li{margin-bottom:5px;}
+/* CONTACT */
+.contact-box{background:var(--grad);border-radius:24px;padding:56px 36px;text-align:center;color:#fff;}
+.contact-box h2{color:#fff;}
+.contact-box p{opacity:0.92;max-width:480px;margin:0 auto 28px;}
+.contact-box .social a{border-color:rgba(255,255,255,0.4);color:#fff;}
+.contact-box .social a:hover{background:#fff;color:var(--p1);}
+footer{text-align:center;padding:34px 0;color:var(--muted);font-size:0.85rem;}
+@media(max-width:640px){.navlinks{display:none;}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <div class="logo">Sahithi V S</div>
+  <div class="navlinks">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+  </div>
+  <button id="themeBtn" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="avatar">SV</div>
+    <h1>Sahithi V S</h1>
+    <div class="role">Data & AI Engineer</div>
+    <p class="tag">I turn messy, noisy real-world data — cloud bills, logs, acoustic signals, product reviews — into reliable signal, AI-driven automation, and decision-ready insight.</p>
+    <div class="btnrow">
+      <a class="btn btn-grad" href="#projects"><i class="fa-solid fa-diagram-project"></i> View Projects</a>
+      <a class="btn btn-outline" href="mailto:vssahithiii@gmail.com"><i class="fa-solid fa-paper-plane"></i> Get in Touch</a>
+    </div>
+    <div class="social">
+      <a href="https://github.com/Sahithiii123" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/sahithi-v-s-275569291" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="mailto:vssahithiii@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+</header>
+
+<section id="about"><div class="wrap">
+  <div class="eyebrow">ABOUT ME</div>
+  <h2>Who I am</h2>
+  <div class="about-box">Data professional with hands-on, production experience in Python, SQL, and cloud-based analytics, skilled at turning messy data into clear dashboards and actionable insights. Currently a Data and Infrastructure Specialist at Kyndryl (Fortune 500, spun off from IBM), where I build AI-driven anomaly detection and rightsizing models across a $650K+/month multi-cloud environment. B.Tech in AI & Data Science from REVA University, and co-author of a published IEEE paper on deep learning for acoustic direction-of-arrival estimation. Comfortable working independently across remote, cross-functional teams, with a strong foundation in statistics, machine learning, and data quality.</div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <div class="eyebrow">CAPABILITIES</div>
+  <h2>Skills & Certifications</h2>
+  <div class="skillgrid">
+    <div class="skillcard"><h3><i class="fa-solid fa-code"></i> Languages</h3><div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">C++</span></div></div>
+    <div class="skillcard"><h3><i class="fa-solid fa-brain"></i> AI / ML</h3><div class="chips"><span class="chip">Machine Learning</span><span class="chip">Deep Learning</span><span class="chip">CNN / CNN-LSTM</span><span class="chip">NLP</span><span class="chip">Agentic AI</span><span class="chip">LLMs</span><span class="chip">AWS Bedrock</span><span class="chip">TensorFlow</span></div></div>
+    <div class="skillcard"><h3><i class="fa-solid fa-cloud"></i> Cloud & Infra</h3><div class="chips"><span class="chip">AWS (S3, Lambda, EC2, RDS, Athena, Glue)</span><span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">FinOps</span><span class="chip">AIOps</span></div></div>
+    <div class="skillcard"><h3><i class="fa-solid fa-chart-line"></i> Data Science & Stats</h3><div class="chips"><span class="chip">Statistical Modeling</span><span class="chip">Hypothesis Testing</span><span class="chip">A/B Testing</span><span class="chip">Causal Inference</span><span class="chip">EDA</span></div></div>
+    <div class="skillcard"><h3><i class="fa-solid fa-display"></i> Dashboards & BI</h3><div class="chips"><span class="chip">Looker</span><span class="chip">Grafana</span><span class="chip">Amazon QuickSight</span><span class="chip">Power BI</span></div></div>
+    <div class="skillcard"><h3><i class="fa-solid fa-certificate"></i> Certifications</h3><div class="chips"><span class="chip">AWS Solutions Architect</span><span class="chip">AWS Cloud Practitioner</span><span class="chip">Google Cloud Digital Leader</span><span class="chip">Azure AZ-900</span><span class="chip">Azure AI-900</span><span class="chip">Power BI PL-300</span></div></div>
+  </div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <div class="eyebrow">MY WORK</div>
+  <h2>Featured Projects</h2>
+  <div class="pgrid">
+
+    <div class="pcard"><h3>LogSleuth</h3><div class="result">Eval harness: 4/15 scenarios passed</div>
+      <p>A ReAct-style LLM agent that diagnoses failing service integrations from logs — 5 tools, structured Pydantic output, cost caps, and prompt-injection guardrails, with full OpenTelemetry/Prometheus/Grafana observability.</p>
+      <div class="tags"><span>Python</span><span>ReAct Agent</span><span>Grafana</span><span>OpenTelemetry</span></div>
+      <a class="gh" href="https://github.com/Sahithiii123/logsleuth" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
+    </div>
+
+    <div class="pcard"><h3>Cadence — AI Shoe Intelligence</h3><div class="result">6,000 reviews analyzed in one pass</div>
+      <p>A 32-agent pipeline on AWS Lambda + Bedrock (Claude Sonnet 4.5) reading product reviews once to power shopper fit-matching and retailer restock/avoid decisions via a deterministic, auditable scoring layer.</p>
+      <div class="tags"><span>AWS Lambda</span><span>Bedrock</span><span>Multi-Agent</span></div>
+      <a class="gh" href="https://github.com/Sahithiii123/cadence-ai-shoe-intelligence" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
+    </div>
+
+    <div class="pcard"><h3>DS Deliverable Evaluator</h3><div class="result">100% reproducible across runs</div>
+      <p>A rubric-based grader for A/B tests, causal inference, ML/NLP evaluations, and EDA reports — 26+ evidence-based criteria, correctly scoring a deliberately weak deliverable 4.7/100 vs. 100/100 for a sound one.</p>
+      <div class="tags"><span>Python</span><span>Rubric Design</span><span>LLM-as-Judge</span></div>
+      <a class="gh" href="https://github.com/Sahithiii123/ds-deliverable-evaluator" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
+    </div>
+
+    <div class="pcard"><h3>Cloud Cost Anomaly Finder</h3><div class="result">1 real anomaly isolated from 32 false positives</div>
+      <p>A Python/SQL pipeline simulating 14 months of AWS cost data — Athena-style SQL, a 7-day rolling z-score anomaly detector, and dual-method forecasting landing within 1.5% agreement.</p>
+      <div class="tags"><span>SQL</span><span>Athena</span><span>Forecasting</span></div>
+      <a class="gh" href="https://github.com/Sahithiii123/cloud-cost-anomaly-finops" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
+    </div>
+
+    <div class="pcard"><h3>DoA Estimation for Gunshot Detection</h3><div class="result">Published — IEEE ICCSC 2025</div>
+      <p>CNN/CNN-LSTM vs. classical GCC-PHAT/TDOA for acoustic gunshot localization. A feature-pipeline bug was found and fixed, and a harder re-run with 3.3x more data put the CNN 15 points ahead of classical baselines.</p>
+      <div class="tags"><span>CNN/LSTM</span><span>Signal Processing</span><span>Research</span></div>
+      <a class="gh" href="https://github.com/Sahithiii123/doa-gunshot-detection-main" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
+    </div>
+
+    <div class="pcard"><h3>A/B Test: Experiment Design</h3><div class="result">28.2% power → "need more data"</div>
+      <p>A full experiment lifecycle on a marketing dataset — pre-registered hypothesis, power analysis, chi-square test, and confidence interval, honestly reporting a promising but statistically inconclusive lift.</p>
+      <div class="tags"><span>Hypothesis Testing</span><span>Power Analysis</span></div>
+      <a class="gh" href="https://github.com/Sahithiii123/ab-test-experiment-design" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
+    </div>
+
+    <div class="pcard"><h3>Order Processing System</h3><div class="result">Event-driven, AWS CDK</div>
+      <p>A multi-service, event-driven serverless pipeline (API Gateway → Lambda → DynamoDB Streams → EventBridge → SQS/DLQ → Step Functions) with idempotency, retry/backoff, and LocalStack-based local testing.</p>
+      <div class="tags"><span>AWS CDK</span><span>Event-Driven</span><span>TypeScript</span></div>
+      <a class="gh" href="https://github.com/Sahithiii123/order-processing-system" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> View on GitHub</a>
+    </div>
+
+  </div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <div class="eyebrow">CAREER PATH</div>
+  <h2>Experience & Education</h2>
+  <div class="timeline">
+    <div class="titem"><div class="when">JUL 2025 – PRESENT</div><h3>Data and Infrastructure Specialist</h3><div class="org">Kyndryl, India — Fortune 500, spun off from IBM</div>
+      <ul><li>Applied Python/SQL statistical modeling to evaluate cost/performance data across a $650K+/month multi-cloud environment.</li>
+      <li>Built AI-driven anomaly detection and rightsizing models on AWS Bedrock, surfacing $671K in optimization findings and $460K in reservation savings.</li></ul>
+    </div>
+    <div class="titem"><div class="when">AUG 2024 – FEB 2025</div><h3>AI/ML Intern</h3><div class="org">Nullclass Private Limited, Chennai</div>
+      <ul><li>Built and benchmarked ML/deep learning pipelines, including LLM and NLP models, across 10+ languages.</li></ul>
+    </div>
+    <div class="titem"><div class="when">NOV 2021 – JUN 2025</div><h3>B.Tech, AI & Data Science</h3><div class="org">REVA University — CGPA 8.05</div>
+      <ul><li>Co-author, "Direction of Arrival Estimation for Gunshot Detection," IEEE ICCSC 2025.</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="contact-box">
+    <h2>Let's build something together</h2>
+    <p>Open to data science, AI/ML, and data engineering roles. Reach out any time.</p>
+    <div class="social">
+      <a href="mailto:vssahithiii@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/sahithi-v-s-275569291" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/Sahithiii123" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+    </div>
+  </div>
+</div></section>
+
+<footer>© 2026 Sahithi V S. Built with real project data, not lorem ipsum.</footer>
+
+<script>
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('themeIcon').className = t==='light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';try{localStorage.setItem('theme',t);}catch(e){}}
+function toggleTheme(){const cur=document.documentElement.getAttribute('data-theme')||'dark';applyTheme(cur==='dark'?'light':'dark');}
+(function(){let saved;try{saved=localStorage.getItem('theme');}catch(e){}
+if(saved){applyTheme(saved);}else{applyTheme(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}})();
+</script>
+</body>
+</html>
